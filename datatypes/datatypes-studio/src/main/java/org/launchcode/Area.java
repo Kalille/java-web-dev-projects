@@ -12,7 +12,7 @@ public class Area {
             if (radius < 0) {
                 System.err.println("Radius cannot be negative. Please enter a positive value.");
                 System.out.println("Enter a Radius: ");
-                input.close(); // Close the scanner to prevent resource leaks
+                input.close();
             }
 
             Double area = Circle.getArea(radius);
@@ -22,11 +22,5 @@ public class Area {
         } catch (InputMismatchException e) {
             System.err.println("Invalid input: Please enter a valid number");
         }
-        // Close the scanner to prevent resource leaks
-        //        System.out.println("Enter a Radius: ");
-//         radius = input.nextDouble();
-//        Double area = Circle.getArea(radius);
-//        System.out.println("The area of your circle with a radius of " + radius + " is: "  + area);
-
     }
 }
