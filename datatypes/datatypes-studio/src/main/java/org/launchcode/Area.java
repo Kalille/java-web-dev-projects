@@ -1,13 +1,32 @@
 package org.launchcode;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 public class Area {
     public static void main(String[] args){
-        Scanner input = new Scanner(System.in);
-        System.out.println("Enter a Radius: ");
-        double radius = input.nextDouble();
-//        double circumference = radius * PI;
-        Double area = Circle.getArea(radius);
-        System.out.println("The area of your circle with a radius of " + radius + " is: "  + area);
+
+        try (Scanner input = new Scanner(System.in)) {
+            double radius;
+            System.out.println("Enter a Radius: ");
+            radius = input.nextDouble();
+
+            if (radius < 0) {
+                System.err.println("Radius cannot be negative. Please enter a positive value.");
+                System.out.println("Enter a Radius: ");
+                input.close(); // Close the scanner to prevent resource leaks
+            }
+
+            Double area = Circle.getArea(radius);
+            input.close();
+            System.out.println("The area of your circle with a radius of " + radius + " is: " + area);
+
+        } catch (InputMismatchException e) {
+            System.err.println("Invalid input: Please enter a valid number");
+        }
+        // Close the scanner to prevent resource leaks
+        //        System.out.println("Enter a Radius: ");
+//         radius = input.nextDouble();
+//        Double area = Circle.getArea(radius);
+//        System.out.println("The area of your circle with a radius of " + radius + " is: "  + area);
 
     }
 }
